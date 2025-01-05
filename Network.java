@@ -31,7 +31,7 @@ public class Network {
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
         for (int i = 0; i < userCount; i++) {
-            if (users[i].getName().equals(name)){
+            if (users[i].getName().toLowerCase().equals(name.toLowerCase())){
                 return users[i];
             }
         }
@@ -73,8 +73,10 @@ public class Network {
             return false;
         }
 
-        user1.addFollowee(name2);
-        return true;
+        if (name1.equals(name2)){
+            return false;
+        }
+        return user1.addFollowee(name2);
     }
     
     /** For the user with the given name, recommends another user to follow. The recommended user is
